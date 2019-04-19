@@ -1,0 +1,112 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style type="text/css">
+      img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    </style>
+	</head>
+   <body>
+   	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Aadhar OCR</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>	
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+	<form id="upload-form"  action="/upload" method="POST" enctype="multipart/form-data">
+	    <strong>Upload image:</strong><br>
+	    <input id="file-picker" type="file" name="file" onchange="loadFile(event)" accept="image/*"><br><br>
+      <div style="height:50% ">
+        <img id="output"/>
+      </div>
+	    <div id="msg"></div><br/>
+	    <input type="submit" value="Upload" onclick="clickAlert()" id="upload-button">
+	</form>
+    </div>
+    <div class="col-md-6 form-control">
+      <b>Click to view scanned data</b>
+       <form action="/result" method="get">
+  		<button type="submit" onchange="loadFile(event)">Result</button><br/><br/>
+  		<table border = 1>
+         <thead>
+            <td>Aadhar UID</td>
+            <td>Name</td>
+            <td>D.O.B.</td>
+            <td>Gender</td>
+         </thead>
+         
+         {% for row in rows %}
+            <tr>
+               <td>{{row["ano"]}}</td>
+               <td>{{row["name"]}}</td>
+               <td> {{ row["dob"]}}</td>
+               <td>{{row["gender"]}}</td>	
+            </tr>
+         {% endfor %}
+      </table>
+		</form>
+       <div style="height:70%">
+       </div>
+    </div>
+  </div>
+</div>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      </script>
+     <script type="text/javascript">
+     	
+    $("#file-picker").change(function(){
+        var input = document.getElementById('file-picker');
+        for (var i=0; i<input.files.length; i++)
+        {
+        //koala.jpg, koala.JPG substring(index) lastIndexOf('a') koala.1.jpg
+            var ext= input.files[i].name.substring(input.files[i].name.lastIndexOf('.')+1).toLowerCase()
+            if ((ext == 'jpg') || (ext == 'png') || (ext == 'jpeg'))
+            {
+                $("#msg").text("Files are supported")
+            }
+            else
+            {
+                $("#msg").text("Files are NOT supported")
+                document.getElementById("file-picker").value ="";
+            }
+        }
+    } );
+
+
+  	function clickAlert() {
+    	alert("Image uploaded successfully!");
+	}
+
+	function clickNext() {
+    	alert("Click Result");
+	}
+
+   var loadFile = function(event) {
+   var reader = new FileReader();
+   reader.onload = function(){
+   var output = document.getElementById('output');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+
+     </script>
+   </body>
+</html>
