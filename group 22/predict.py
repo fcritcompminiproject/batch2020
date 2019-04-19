@@ -1,3 +1,11 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+import os
+import seaborn as sns
+import requests
+from datetime import datetime
+
 weather_condition_number_list = []
 
 for condition in traffic_df['Weather Conditions']:
