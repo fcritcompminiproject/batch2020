@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+<style >
+    .navbar {
+    border-radius: 0;
+    margin-bottom: 0;
+    background: black;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    color: #FFF;
+    border: 0;
+    font-size: 2.4em;
+    padding : 3.5% 0%;
+}
+    .ab {
+    border-radius: 0;
+    margin-bottom: 0;
+    background: white;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    color: black;
+    border: 0;
+    font-size: 3.0em;
+    padding : 3.5% 0%;
+}
+
+    .ac {
+    border-radius: 0;
+    margin-bottom: 0;
+    background: white;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    color: black;
+    border: 0;
+    font-size: 2.0em;
+    padding : 3.5% 0%;
+}
+
+
+</style>
+</head>
+
+<body>
+<header class="navbar">
+Handwritten Text Analyzer
+</header>
+<body>
+		<form class='ac'>
+		Text Detected :
+		</form>
+	{% block body %}
+		<form class='ab'>
+		{{result}}
+		</form>
+		<img src="{{ url_for('send_file', filename=image_file_name)}}">
+		</form>
+	{% endblock %}
+
+</body>
+</html>

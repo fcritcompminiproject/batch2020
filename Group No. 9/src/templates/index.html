@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+<style >
+    .navbar {
+    border-radius: 0;
+    margin-bottom: 0;
+    background: black;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    color: #FFF;
+    border: 0;
+    font-size: 2.4em;
+    padding : 3.5% 0%;
+}
+    .ab {
+    border-radius: 0;
+    margin-bottom: 0;
+    background: white;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    color: black;
+    border: 0;
+    font-size: 1.9em;
+    padding : 3.5% 0%;
+}
+
+</style>
+</head>
+
+<body>
+<header class="navbar">
+Handwritten Text Analyzer
+</header>
+  <form action="/upload" method="post" enctype="multipart/form-data" class="ab">
+      <span class="btn btn-default btn-file">
+        Click on the Button to Browse for Images <input type="file" name="image">
+      </span>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+    <input type="submit" value="Upload your image" class="btn-primary">
+  </form>
+
+</body>
+</html>
