@@ -29,3 +29,7 @@ The application uses Tkinter to interface with the user. The user can submit mal
 11. [DOWNLOAD]keras
 12. [DOWNLOAD]cv2
 
+## Steps to run
+1.  Execute the python code on the following file "Malimg_train_test.ipynb" with the malimg dataset.
+2.  Run the "Malware_Classifier_GUI.py" to generate the GUI.
+3.  Submit the Malware file in the GUI.
